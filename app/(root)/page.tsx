@@ -1,7 +1,32 @@
 import React from "react";
 
+//Components
+import HeaderBox from "../components/HeaderBox";
+import TotalBalanceBox from "../components/TotalBalanceBox";
+import RightSidebar from "../components/RightSidebar";
 const Home = () => {
-  return <div>Home</div>;
+  const loggedIn = { firstName: "Dejan", lastName: "Jorganovic" };
+  return (
+    <section className="home">
+      <div className="home-content">
+        <header className="home-header">
+          <HeaderBox
+            type="greeting"
+            title="Welcome"
+            user={loggedIn.firstName || "Guest"}
+            subtext="Access and manage your account and transactions efficiently"
+          />
+          <TotalBalanceBox
+            accounts={[]}
+            totalBanks={1}
+            totalCurrentBalance={1249.54}
+          />
+        </header>
+        asdsadasdsad
+      </div>
+      <RightSidebar user={loggedIn} transactions={[{}, {}]} banks={[{}, {}]} />
+    </section>
+  );
 };
 
 export default Home;
