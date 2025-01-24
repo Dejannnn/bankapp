@@ -14,8 +14,9 @@ import { sidebarLinks } from "@/constants";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import Footer from "./Footer";
 
-const MobileNavbar = () => {
+const MobileNavbar = ({ user }: MobileNavProps) => {
   const pathname = usePathname();
   return (
     <section className="w-full max-w-[264px]">
@@ -85,7 +86,7 @@ const MobileNavbar = () => {
                   USER
                 </nav>
               </SheetClose>
-              FOOTER
+              <Footer user={user} type="mobile" />
             </div>
           </SheetTitle>
         </SheetContent>
