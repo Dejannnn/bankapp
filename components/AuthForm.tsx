@@ -16,6 +16,7 @@ import { authFormSchema } from "@/lib/utils";
 
 //Actions
 import { signUp, signIn } from "@/lib/actions/user.actions";
+import PlaidLink from "./PlaidLink";
 
 const AuthForm = ({ type }: AuthFormProps) => {
   const formSchema = authFormSchema(type);
@@ -47,20 +48,29 @@ const AuthForm = ({ type }: AuthFormProps) => {
 
     try {
       if (type === "sign-up") {
-        const user = await signUp(values);
-        console.log(user);
+        const data = {
+          firstName: values.firstName!,
+          lastName: values.lastName!,
+          email: values.email,
+          address1: values.address1!,
+          city: values.city!,
+          state: values.state!,
+          postalCode: values.postalCode!,
+          dateOfBirth: values.dateOfBirth!,
+          ssn: values.ssn!,
+          password: values.password,
+        };
+        const user = await signUp(data);
         setUser(user);
       }
       if (type === "sign-in") {
         const { email, password } = values;
         const user = await signIn({ email, password });
-        console.log(">>>user", user);
         if (user) router.push("/");
       }
     } catch (error) {
       console.log("Error after press button", error);
     } finally {
-      console.log(">>>>>>");
       setIsLoading(false);
     }
   };
@@ -91,7 +101,9 @@ const AuthForm = ({ type }: AuthFormProps) => {
         </div>
       </header>
       {user ? (
-        <div className="flex flex-col gap-4">{/* PlaidLink */}</div>
+        <div className="flex flex-col gap-4">
+          <PlaidLink user={user} variant="primary" />
+        </div>
       ) : (
         <>
           <Form {...form}>
