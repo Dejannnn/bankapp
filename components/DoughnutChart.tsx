@@ -1,15 +1,12 @@
 "use client";
-import React, { useCallback } from "react";
+import React from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 
 import { Doughnut } from "react-chartjs-2";
-import { plugin } from "postcss";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const DoughnutChart = ({ accounts }: DoughnutChartProps) => {
-  console.log(">>>accounts>>>", accounts);
-
   const names = accounts.map((account) => account.officialName);
   const balances = accounts.map((account) => account.currentBalance);
 
